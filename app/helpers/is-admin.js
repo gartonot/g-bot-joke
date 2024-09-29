@@ -1,7 +1,5 @@
 const isAdmin = (userId) => {
-  const ID_ADMIN = 0 // TODO: хранить в БД или env
-
-  return userId === ID_ADMIN;
+  return userId ===  Number(process.env.ADMIN_ID);
 }
 
 export default isAdmin;
