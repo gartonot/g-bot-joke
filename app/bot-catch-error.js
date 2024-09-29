@@ -1,3 +1,5 @@
+import { GrammyError, HttpError } from 'grammy';
+
 const botCatchError = (bot) => {
     bot.catch((catchError) => {
         const ctx = catchError.ctx;
