@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@grammyjs/hydrate": "^1.4.1",
-    "@grammyjs/menu": "^1.2.2",
     "dotenv": "^16.4.5",
     "grammy": "^1.30.0"
   }
