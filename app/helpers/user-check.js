@@ -1,11 +1,30 @@
+import isAdmin from './is-admin.js';
+import { 
+  startKeyboardByAdmin,
+  startKeyboardByUser,
+} from '../keyboards/index.js';
+
+const welcomeAdmin = (ctx) => {
+  ctx.reply('G-BOT Joke приветствует администрацию', {
+    reply_markup: startKeyboardByAdmin
+  });
+}
+
+const welcomeUser = (ctx) => {
+  ctx.reply('Добро пожаловать в G-BOT Joke', {
+    reply_markup: startKeyboardByUser,
+  });
+}
+
 const userCheck = (bot) => {
-  const ID_ADMIN = 0 // TODO: хранить в БД или env
+  bot.use(startKeyboardByAdmin);
+  bot.use(startKeyboardByUser);
 
   bot.command('start', (ctx) => {
-    if(ctx.from.id === ID_ADMIN) {
-      ctx.reply('G-BOT Joke приветствует администрацию');
+    if(isAdmin(ctx.from.id)) {
+      welcomeAdmin(ctx);
     } else {
-      ctx.reply('Добро пожаловать в G-BOT Joke');
+      welcomeUser(ctx);
     }
   })
 }
