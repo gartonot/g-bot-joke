@@ -1,5 +1,3 @@
-import init from './app/init.js';
+import botInit from './app/bot-init.js';
 
-init();
-
-
+const bot = botInit();
