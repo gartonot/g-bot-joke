@@ -1,7 +1,10 @@
-const keyboardActions = (bot) => {
+import { settingsJokeByAdmin } from './index.js';
 
+const keyboardActions = (bot) => {
   bot.callbackQuery('adminSetJoke', async (ctx) => {
-    await ctx.reply('Админ запускает розыгрыш');
+    await ctx.reply('Админ запускает розыгрыш', {
+      reply_markup: settingsJokeByAdmin
+    });
   });
 
   bot.callbackQuery('userSetParticipation', async (ctx) => {
