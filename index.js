@@ -1,10 +1,15 @@
 import botInit from './app/bot-init.js';
+import botCatchError from './app/bot-catch-error.js';
 import drawKeyboardStart from './app/helpers/draw-keyboard-start.js';
 
 const bot = botInit();
 
 // Рисуем стартовые клавиатуры
 drawKeyboardStart(bot);
+
+// Обработчик ошибок
+botCatchError(bot);
+
 
 // ctx.menu.update() - обновляет меню (если там что-то изменилось)
 
