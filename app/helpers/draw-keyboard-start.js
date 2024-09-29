@@ -4,13 +4,13 @@ import {
   startKeyboardByUser,
 } from '../keyboards/index.js';
 
-const welcomeAdmin = (ctx) => {
-  ctx.reply('G-BOT Joke приветствует администрацию', {
+const welcomeAdmin = async (ctx) => {
+  await ctx.reply('G-BOT Joke приветствует администрацию', {
     reply_markup: startKeyboardByAdmin
   });
 }
 
-const welcomeUser = (ctx) => {
+const welcomeUser = async (ctx) => {
   /*
     TODO
 
@@ -19,16 +19,16 @@ const welcomeUser = (ctx) => {
       если нет - то говорим, что сейчас нет розыгрышей
   */
 
-  ctx.reply('Добро пожаловать в G-BOT Joke', {
+  await ctx.reply('Добро пожаловать в G-BOT Joke', {
     reply_markup: startKeyboardByUser,
   });
 }
 
-const welcomeHandler = (ctx) => {
+const welcomeHandler = async (ctx) => {
   if(isAdmin(ctx.from.id)) {
-    welcomeAdmin(ctx);
+    await welcomeAdmin(ctx);
   } else {
-    welcomeUser(ctx);
+    await welcomeUser(ctx);
   }
 }
 
