@@ -33,10 +33,6 @@ const welcomeHandler = async (ctx) => {
 }
 
 const drawKeyboardStart = (bot) => {
-  // Регистрируем клавиатуры
-  bot.use(startKeyboardByAdmin);
-  bot.use(startKeyboardByUser);
-
   // Приветствуем пользователя\админа по кнопке старт
   bot.command('start', welcomeHandler);
 }
