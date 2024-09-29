@@ -5,7 +5,7 @@ import {
 } from '../keyboards/index.js';
 
 const welcomeAdmin = async (ctx) => {
-  await ctx.reply('G-BOT Joke приветствует администрацию', {
+  await ctx.reply('G-Bot Joke приветствует администрацию', {
     reply_markup: startKeyboardByAdmin
   });
 }
@@ -19,7 +19,7 @@ const welcomeUser = async (ctx) => {
       если нет - то говорим, что сейчас нет розыгрышей
   */
 
-  await ctx.reply('Добро пожаловать в G-BOT Joke', {
+  await ctx.reply('Добро пожаловать в G-Bot Joke', {
     reply_markup: startKeyboardByUser,
   });
 }
