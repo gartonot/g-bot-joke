@@ -9,7 +9,9 @@ const botInit = () => {
   registerPlugins(bot);
 
   // Запускаем бота
-  bot.start();
+  bot.start({
+    allowed_updates: ['message', 'chat_member'],
+  });
 
   return bot;
 }
