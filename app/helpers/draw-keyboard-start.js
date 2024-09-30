@@ -3,6 +3,7 @@ import {
   startKeyboardByAdmin,
   startKeyboardByUser,
 } from '../keyboards/index.js';
+import checkSubscribe from './check-subscribe.js';
 
 const welcomeAdmin = async (ctx) => {
   await ctx.reply('G-Bot Joke приветствует администрацию', {
@@ -25,10 +26,14 @@ const welcomeUser = async (ctx) => {
 }
 
 const welcomeHandler = async (ctx) => {
-  if(isAdmin(ctx.from.id)) {
-    await welcomeAdmin(ctx);
-  } else {
-    await welcomeUser(ctx);
+  const isSubscriber = await checkSubscribe(ctx);
+
+  if(isSubscriber) {
+    if(isAdmin(ctx.from.id)) {
+      await welcomeAdmin(ctx);
+    } else {
+      await welcomeUser(ctx);
+    }
   }
 }
 
