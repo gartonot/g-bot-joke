@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { Bot } from 'grammy';
 import registerPlugins from './modules/register-plugins.js';
 
@@ -8,10 +7,11 @@ const botInit = () => {
   // Регистрируем плагины
   registerPlugins(bot);
 
+  // Разрешения на обновление
+  const allowedUpdates = ['message', 'callback_query', 'chat_member'];
+
   // Запускаем бота
-  bot.start({
-    allowed_updates: ['message', 'chat_member'],
-  });
+  bot.start({ allowed_updates: allowedUpdates });
 
   return bot;
 }

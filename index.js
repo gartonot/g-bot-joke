@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import botInit from './app/bot-init.js';
 import botCatchError from './app/bot-catch-error.js';
 import drawKeyboardStart from './app/helpers/draw-keyboard-start.js';
