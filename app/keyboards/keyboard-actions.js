@@ -1,6 +1,7 @@
 import { 
   settingsJokeByAdmin,
   startKeyboardByAdmin,
+  globalSettingsJokeByAdmin,
 } from './index.js';
 import actionsKey from './actions-key.js';
 
@@ -16,6 +17,12 @@ const keyboardActions = (bot) => {
       reply_markup: settingsJokeByAdmin
     });
   });
+
+  bot.callbackQuery(actionsKey.ADMIN_SET_SETTINGS, async (ctx) => {
+    await ctx.editMessageText('Глобальные настройки', {
+      reply_markup: globalSettingsJokeByAdmin
+    });
+  })
 
   // Клик по кнопке назад (рисуем главное меню для админа)
   bot.callbackQuery(actionsKey.MAIN_MENU, async (ctx) => {
