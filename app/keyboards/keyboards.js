@@ -9,7 +9,7 @@ export const startKeyboardByAdmin = new InlineKeyboard()
     .text('(DEV 🛠) Последйни розыгрыш', '-');
 
 export const settingsJokeByAdmin = new InlineKeyboard()
-    .text('🖊 Добавить название ', '-').row()
+    .text('🖊 Добавить название ', actionsKey.ADMIN_SET_TITLE_JOKE).row()
     .text('🎇 Уведомить пользователей', '-').row()
     .text('✅ Запустить розыгрыш!', '-').row()
     .text('⬅ Вернуться назад', actionsKey.MAIN_MENU);

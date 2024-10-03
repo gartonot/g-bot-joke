@@ -16,7 +16,6 @@ const keyboardActions = (bot) => {
   bot.callbackQuery(actionsKey.ADMIN_SET_JOKE, async (ctx) => {
     
     // TODO: сделать хелпер для рандомного числа + указать диапозон // подключить либу
-
     // Создаём рандомный айди для розыгрыша и сохраняем его в базу
     ctx.session.jokeStartId = Math.floor(Math.random() * 100);
     await jokeController.createJoke(ctx.session.jokeStartId);
@@ -26,6 +25,12 @@ const keyboardActions = (bot) => {
     });
   });
 
+  // 
+  bot.callbackQuery(actionsKey.ADMIN_SET_TITLE_JOKE, async (ctx) => {
+    ctx.reply('Добавляем к розыгрышу название')
+  })
+
+  // Глобальные настройки
   bot.callbackQuery(actionsKey.ADMIN_SET_SETTINGS, async (ctx) => {
     await ctx.editMessageText('Глобальные настройки', {
       reply_markup: globalSettingsJokeByAdmin
