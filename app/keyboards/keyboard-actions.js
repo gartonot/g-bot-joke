@@ -4,6 +4,7 @@ import {
   globalSettingsJokeByAdmin,
 } from './index.js';
 import actionsKey from './actions-key.js';
+import jokeController from '../http/controllers/joke-controller.js';
 
 const keyboardActions = (bot) => {
 
@@ -13,6 +14,13 @@ const keyboardActions = (bot) => {
 
   // Клик по кнопке запуска розыгрыша (рисуем кнопки настроек розыгрыша)
   bot.callbackQuery(actionsKey.ADMIN_SET_JOKE, async (ctx) => {
+    
+    // TODO: сделать хелпер для рандомного числа + указать диапозон // подключить либу
+
+    // Создаём рандомный айди для розыгрыша и сохраняем его в базу
+    ctx.session.jokeStartId = Math.floor(Math.random() * 100);
+    await jokeController.createJoke(ctx.session.jokeStartId);
+
     await ctx.editMessageText('Перед началом настроим розыгрыш', {
       reply_markup: settingsJokeByAdmin
     });
