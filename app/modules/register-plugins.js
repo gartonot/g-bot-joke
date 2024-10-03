@@ -1,5 +1,5 @@
 import { hydrate } from '@grammyjs/hydrate';
-import { MemorySessionStorage  } from 'grammy'; 
+import { MemorySessionStorage, session  } from 'grammy'; 
 import { chatMembers } from "@grammyjs/chat-members";
 
 const registerPlugins = (bot) => {
@@ -7,6 +7,7 @@ const registerPlugins = (bot) => {
 
   bot.use(chatMembers(adapter));
   bot.use(hydrate());
+  bot.use(session({ initial: () => ({ botStart: true }) }));
 }
 
 export default registerPlugins;
