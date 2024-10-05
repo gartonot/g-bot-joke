@@ -12,7 +12,7 @@ export const settingsJokeByAdmin = new InlineKeyboard()
     .text('🖊 Добавить название ', actionsKey.ADMIN_SET_TITLE_JOKE).row()
     .text('🎇 Уведомить пользователей', '-').row()
     .text('✅ Запустить розыгрыш!', '-').row()
-    .text('⬅ Вернуться назад', actionsKey.MAIN_MENU);
+    .text('⬅ Вернуться назад', actionsKey.MAIN_MENU_FROM_JOKE);
 
 export const globalSettingsJokeByAdmin = new InlineKeyboard()
     .text('🧵 Текст для кнопки участия', '-').row()
