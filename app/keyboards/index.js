@@ -3,6 +3,7 @@ import {
     startKeyboardByUser,
     settingsJokeByAdmin,
     globalSettingsJokeByAdmin,
+    returnJokeSettingsKeyboard,
 } from './keyboards.js';
 
 export {
@@ -10,4 +11,5 @@ export {
     startKeyboardByUser,
     settingsJokeByAdmin,
     globalSettingsJokeByAdmin,
+    returnJokeSettingsKeyboard,
 }

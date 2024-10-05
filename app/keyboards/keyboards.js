@@ -1,6 +1,10 @@
 import { InlineKeyboard } from 'grammy';
 import actionsKey from './actions-key.js';
 
+// Common keyboards
+export const returnJokeSettingsKeyboard = new InlineKeyboard()
+    .text('Отменить', actionsKey.ADMIN_SET_JOKE_SETTINGS);
+
 // Admin keyboards
 export const startKeyboardByAdmin = new InlineKeyboard()
     .text('🎉 Начать новый розыгрыш', actionsKey.ADMIN_SET_JOKE).row()
@@ -8,8 +12,9 @@ export const startKeyboardByAdmin = new InlineKeyboard()
     .text('(DEV 🛠) История розыгрышей', '-').row()
     .text('(DEV 🛠) Последйни розыгрыш', '-');
 
+// TODO: Не давать запустить, если нет названия
 export const settingsJokeByAdmin = new InlineKeyboard()
-    .text('🖊 Добавить название ', actionsKey.ADMIN_SET_TITLE_JOKE).row()
+    .text('🖊 Изменить название ', actionsKey.ADMIN_SET_TITLE_JOKE).row()
     .text('🎇 Уведомить пользователей', '-').row()
     .text('✅ Запустить розыгрыш!', '-').row()
     .text('⬅ Вернуться назад', actionsKey.MAIN_MENU_FROM_JOKE);

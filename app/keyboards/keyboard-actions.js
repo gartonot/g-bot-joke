@@ -2,6 +2,7 @@ import {
     settingsJokeByAdmin,
     startKeyboardByAdmin,
     globalSettingsJokeByAdmin,
+    returnJokeSettingsKeyboard,
 } from './index.js';
 import actionsKey from './actions-key.js';
 import jokeController from '../http/controllers/joke-controller.js';
@@ -17,14 +18,27 @@ const keyboardActions = (bot) => {
         ctx.session.jokeStartId = randomId();
         await jokeController.createJoke(ctx.session.jokeStartId);
 
-        await ctx.editMessageText('Перед началом настроим розыгрыш', {
+        await ctx.editMessageText('Настройки розыгрыша', {
             reply_markup: settingsJokeByAdmin
         });
     });
 
-    // Даём название розыгрышу
+    // Если был клик по кнопке отмена во время настроек розыгрыша
+    bot.callbackQuery(actionsKey.ADMIN_SET_JOKE_SETTINGS, async (ctx) => {
+        ctx.session.isSetTitle = false;
+        
+        await ctx.editMessageText('Настройки розыгрыша', {
+            reply_markup: settingsJokeByAdmin
+        });
+    })
+
+    // Клик по кнопке "Добавить название"
     bot.callbackQuery(actionsKey.ADMIN_SET_TITLE_JOKE, async (ctx) => {
-        ctx.reply('Добавляем к розыгрышу название')
+        ctx.session.isSetTitle = true;
+        
+        await ctx.editMessageText('Напишите название розыгрыша', {
+            reply_markup: returnJokeSettingsKeyboard,
+        });
     })
 
     // Глобальные настройки
@@ -58,6 +72,20 @@ const keyboardActions = (bot) => {
     // Клик по кнопке участвовать
     bot.callbackQuery(actionsKey.USER_SET_PARTICIPATION, async (ctx) => {
         await ctx.reply('Пользователь нажал участвовать');
+    });
+
+    // Обработчик на сообщения
+    bot.on('message', async (ctx) => {
+        if(ctx.session.isSetTitle) {
+            ctx.session.isSetTitle = false;
+            const jokeId = ctx.session.jokeStartId;
+            const title = ctx.message.text;
+            await jokeController.setTitleJokeById(jokeId, title);
+
+            await ctx.reply(`Настройки розыгрыша: \n${title}`, {
+                reply_markup: settingsJokeByAdmin
+            });
+        }
     });
 };
 

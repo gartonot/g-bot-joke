@@ -21,6 +21,10 @@ const JokeModel = {
     async deleteJokeBySessionId(jokeId) {
         this.db.run(`DELETE FROM ${this.tableName} WHERE joke_id = ?`, [jokeId]);
     },
+
+    async setTitleJokeById(jokeId, title) {
+        this.db.run(`UPDATE ${this.tableName} SET title = ? WHERE joke_id = ?`, [title, jokeId]);
+    }
 }
 
 export default JokeModel;

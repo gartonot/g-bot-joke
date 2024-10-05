@@ -14,6 +14,10 @@ const jokeController = {
     
     async deleteJokeBySessionId(jokeId) {
         await JokeModel.deleteJokeBySessionId(jokeId);
+    },
+
+    async setTitleJokeById(jokeId, title) {
+        await JokeModel.setTitleJokeById(jokeId, title);
     }
 }
 
