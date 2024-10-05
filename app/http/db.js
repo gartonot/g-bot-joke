@@ -8,9 +8,8 @@ const setupDatabase = async () => {
         CREATE TABLE IF NOT EXISTS jokes (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
             joke_id INTEGER,
-            date VARCHAR(50),
+            date TIMESTAMP,
             status VARCHAR(50),
-            is_draft INTEGER,
             users TEXT
         )
     `);

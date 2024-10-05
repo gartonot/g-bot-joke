@@ -1,9 +1,13 @@
 import JokeModel from '../models/Joke.js';
+import constants from '../../constants/index.js';
 
 const jokeController = {
   async createJoke(jokeId) {
     const data = {
-      jokeId: jokeId
+      jokeId: jokeId,
+      date: Date.now(),
+      status: constants.status.START,
+      users: JSON.stringify([]),
     }
     await JokeModel.createJoke(data);
   },
