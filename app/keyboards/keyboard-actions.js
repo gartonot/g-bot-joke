@@ -23,7 +23,7 @@ const keyboardActions = (bot) => {
     });
   });
 
-  // 
+  // Даём название розыгрышу
   bot.callbackQuery(actionsKey.ADMIN_SET_TITLE_JOKE, async (ctx) => {
     ctx.reply('Добавляем к розыгрышу название')
   })
@@ -35,18 +35,18 @@ const keyboardActions = (bot) => {
     });
   })
 
-  // Клик по кнопке назад (рисуем главное меню для админа)
-  bot.callbackQuery(actionsKey.MAIN_MENU, async (ctx) => {
-    await ctx.editMessageText('G-Bot Joke приветствует администрацию', {
-      reply_markup: startKeyboardByAdmin
-    })
-  })
-
   // Клик по кнопке назад из розыгрышка (рисуем главное меню для админа)
   bot.callbackQuery(actionsKey.MAIN_MENU_FROM_JOKE, async (ctx) => {
     await jokeController.deleteJokeBySessionId(ctx.session.jokeStartId);
     ctx.session.jokeStartId = undefined;
     
+    await ctx.editMessageText('G-Bot Joke приветствует администрацию', {
+      reply_markup: startKeyboardByAdmin
+    })
+  })
+
+  // Клик по кнопке назад (рисуем главное меню для админа)
+  bot.callbackQuery(actionsKey.MAIN_MENU, async (ctx) => {
     await ctx.editMessageText('G-Bot Joke приветствует администрацию', {
       reply_markup: startKeyboardByAdmin
     })
