@@ -15,9 +15,6 @@ const keyboardActions = (bot) => {
 
   // Клик по кнопке запуска розыгрыша (рисуем кнопки настроек розыгрыша)
   bot.callbackQuery(actionsKey.ADMIN_SET_JOKE, async (ctx) => {
-    
-    // TODO: сделать хелпер для рандомного числа + указать диапозон // подключить либу
-    // Создаём рандомный айди для розыгрыша и сохраняем его в базу
     ctx.session.jokeStartId = randomId();
     await jokeController.createJoke(ctx.session.jokeStartId);
 
