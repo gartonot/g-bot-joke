@@ -6,11 +6,11 @@ import registerKeyboards from './app/modules/register-keyboards.js';
 
 const bot = botInit();
 
-// Регистрируем действия по клавиатуре
-registerKeyboards(bot);
-
 // Рисуем стартовые клавиатуры
 drawKeyboardStart(bot);
+
+// Регистрируем действия по клавиатуре
+registerKeyboards(bot);
 
 // Обработчик ошибок
 botCatchError(bot);
