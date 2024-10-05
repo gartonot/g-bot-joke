@@ -48,6 +48,7 @@ const keyboardActions = (bot) => {
   // Клик по кнопке назад из розыгрышка (рисуем главное меню для админа)
   bot.callbackQuery(actionsKey.MAIN_MENU_FROM_JOKE, async (ctx) => {
     await jokeController.deleteJokeBySessionId(ctx.session.jokeStartId);
+    ctx.session.jokeStartId = undefined;
     
     await ctx.editMessageText('G-Bot Joke приветствует администрацию', {
       reply_markup: startKeyboardByAdmin

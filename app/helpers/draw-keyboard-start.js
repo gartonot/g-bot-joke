@@ -4,8 +4,18 @@ import {
   startKeyboardByUser,
 } from '../keyboards/index.js';
 import checkSubscribe from './check-subscribe.js';
+import jokeController from '../http/controllers/joke-controller.js';
 
 const welcomeAdmin = async (ctx) => {
+  /*
+    Если вдруг админ решил нажать ещё раз кнопку старта, 
+      а старый розыгрыш ещё не завершился, 
+      тогда удаляем этот розыгрыш
+  */
+  if(ctx.session.jokeStartId) {
+    jokeController.deleteJokeBySessionId(ctx.session.jokeStartId);
+  }
+
   await ctx.reply('G-Bot Joke приветствует администрацию', {
     reply_markup: startKeyboardByAdmin
   });
