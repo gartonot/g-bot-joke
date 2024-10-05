@@ -5,6 +5,7 @@ import {
 } from './index.js';
 import actionsKey from './actions-key.js';
 import jokeController from '../http/controllers/joke-controller.js';
+import randomId from '../helpers/random-id.js';
 
 const keyboardActions = (bot) => {
 
@@ -17,7 +18,7 @@ const keyboardActions = (bot) => {
     
     // TODO: сделать хелпер для рандомного числа + указать диапозон // подключить либу
     // Создаём рандомный айди для розыгрыша и сохраняем его в базу
-    ctx.session.jokeStartId = Math.floor(Math.random() * 100);
+    ctx.session.jokeStartId = randomId();
     await jokeController.createJoke(ctx.session.jokeStartId);
 
     await ctx.editMessageText('Перед началом настроим розыгрыш', {

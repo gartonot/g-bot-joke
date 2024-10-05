@@ -4,11 +4,14 @@ const setupDatabase = async () => {
     const SQLite3 = sqlite3.verbose();
     const db = new SQLite3.Database('jokes.db');
 
-    // TODO: при добавлении полей перезаписывать файл (переписать на миграции)
-    db.run(`
+    db.exec(`
         CREATE TABLE IF NOT EXISTS jokes (
             id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            joke_id INTEGER
+            joke_id INTEGER,
+            date VARCHAR(50),
+            status VARCHAR(50),
+            is_draft INTEGER,
+            users TEXT
         )
     `);
 
